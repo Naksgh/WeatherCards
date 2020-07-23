@@ -59,10 +59,13 @@ $(document).ready(function () {
 
                 // add data to DOM
 
-                document.getElementById("card-wrapper").innerHTML +=
+                document.getElementById("outer-card-wrapper").innerHTML +=
                     `<div class="inner-card-wrap">
                     <p class="country-name">${data.name} in ${data.sys.country}</p>
                     <img src="${image}">
+                    <p>${data.weather[0].description}</p>
+                    <p>${Math.floor(data.main.temp)} °C</p>
+                    <p>feels like... ${data.main.feels_like}</p>
                     </div>
                     `;
 
