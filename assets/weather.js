@@ -2,26 +2,24 @@ $(document).ready(function () {
 
     // Stored Weather Images 
 
-        var clouds = "Images/clouds2.png";
-        var clearDay = "Images/clearDay.png";
-        var clearNight = "Images/clearNight.png";
-        var sunClouds = "Images/sunClouds.png";
-        var moonClouds = "Images/moonClouds.png";
-        var scatteredClouds = "Images/scatteredClouds.png";
-        var brokenClouds = "Images/brokenClouds.png";
-        var rain = "Images/rain.png";
-        var showerRain = "Images/showerRain.png";
-        var thunder = "Images/thunder.png";
-        var snow = "Images/snow.png";
-        var mist = "Images/mist.png";
-        var errorImg = "Images/errorImg.png"
+    var clouds = "Images/clouds2.png";
+    var clearDay = "Images/clearDay.png";
+    var clearNight = "Images/clearNight.png";
+    var sunClouds = "Images/sunClouds.png";
+    var moonClouds = "Images/moonClouds.png";
+    var scatteredClouds = "Images/scatteredClouds.png";
+    var brokenClouds = "Images/brokenClouds.png";
+    var rain = "Images/rain.png";
+    var showerRain = "Images/showerRain.png";
+    var thunder = "Images/thunder.png";
+    var snow = "Images/snow.png";
+    var mist = "Images/mist.png";
+    var errorImg = "Images/errorImg.png"
 
- 
-  
 
     $("#search-button").click(function () {
 
-
+        // Fetch input value for weather query
 
         var searchedLocation = $("input[name=search-field]").val();
 
@@ -31,42 +29,42 @@ $(document).ready(function () {
             success: function (data) {
                 console.log(data);
 
-
-            
-                document.getElementById("card-wrapper").innerHTML += 
-                    `
-                    <p class="country.name">${data.name} in ${data.sys.country}</p>
-                    <img class="weather-img">
-
-                    `;
+                // Check which Weather IMG has been received + create new variable with custom IMG
 
                 if (data.weather[0].icon == "01d") {
-                    $(".weather-img").attr("src", clearDay);
+                    image = clearDay;
                 } else if (data.weather[0].icon == "01n") {
-                    $(".weather-img").attr("src", clearNight);
+                    image = clearNight;
                 } else if (data.weather[0].icon == "02d") {
-                    $(".weather-img").attr("src", sunClouds);
+                    image = sunClouds;
                 } else if (data.weather[0].icon == "02n") {
-                    $(".weather-img").attr("src", moonClouds);
+                    image = moonClouds;
                 } else if (data.weather[0].icon == "03d" || data.weather[0].icon == "03n") {
-                    $(".weather-img").attr("src", scatteredClouds);
+                    image = scatteredClouds;
                 } else if (data.weather[0].icon == "04d" || data.weather[0].icon == "04n") {
-                    $(".weather-img").attr("src", brokenClouds);
+                    image = brokenClouds;
                 } else if (data.weather[0].icon == "09d" || data.weather[0].icon == "09n") {
-                    $(".weather-img").attr("src", showerRain);
+                    image = showerRain;
                 } else if (data.weather[0].icon == "10d" || data.weather[0].icon == "10n") {
-                    $(".weather-img").attr("src", rain);
-                } else if (data.weather[0].icon == "11d" || data.weahter[0].icon == "11n") {
-                    $(".weather-img").attr("src", thunder);
-                } else if (data.weather[0].icon == "13d" || data.weahter[0].icon == "13n") {
-                    $(".weather-img").attr("src", snow);
-                } else if (data.weather[0].icon == "50d" || data.weahter[0].icon == "50n") {
-                    $(".weather-img").attr("src", mist);
+                    image = rain;
+                } else if (data.weather[0].icon == "11d" || data.weather[0].icon == "11n") {
+                    image = thunder;
+                } else if (data.weather[0].icon == "13d" || data.weather[0].icon == "13n") {
+                    image = snow;
+                } else if (data.weather[0].icon == "50d" || data.weather[0].icon == "50n") {
+                    image = mist;
                 } else {
-                    $(".weather-img").attr("src", errorImg);
+                    image = errorImg;
                 }
 
+                // add data to DOM
 
+                document.getElementById("card-wrapper").innerHTML +=
+                    `<div class="inner-card-wrap">
+                    <p class="country-name">${data.name} in ${data.sys.country}</p>
+                    <img src="${image}">
+                    </div>
+                    `;
 
             },
             error: function (error) {
@@ -75,7 +73,7 @@ $(document).ready(function () {
                 alert(`Woops, something went wrong... ${errorMsg}`);
             }
         });
-        
+
 
 
 
