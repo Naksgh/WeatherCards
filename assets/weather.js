@@ -2,26 +2,25 @@ $(document).ready(function () {
 
     // Stored Weather Images 
 
-    var clouds = "Images/clouds2.png";
-    var clearDay = "Images/clearDay.png";
-    var clearNight = "Images/clearNight.png";
-    var sunClouds = "Images/sunClouds.png";
-    var moonClouds = "Images/moonClouds.png";
-    var scatteredClouds = "Images/scatteredClouds.png";
-    var brokenClouds = "Images/brokenClouds.png";
-    var rain = "Images/rain.png";
-    var showerRain = "Images/showerRain.png";
-    var thunder = "Images/thunder.png";
-    var snow = "Images/snow.png";
-    var mist = "Images/mist.png";
-    var errorImg = "Images/errorImg.png"
-
+    let clouds = "Images/clouds2.png";
+    let clearDay = "Images/clearDay.png";
+    let clearNight = "Images/clearNight.png";
+    let sunClouds = "Images/sunClouds.png";
+    let moonClouds = "Images/moonClouds.png";
+    let scatteredClouds = "Images/scatteredClouds.png";
+    let brokenClouds = "Images/brokenClouds.png";
+    let rain = "Images/rain.png";
+    let showerRain = "Images/showerRain.png";
+    let thunder = "Images/thunder.png";
+    let snow = "Images/snow.png";
+    let mist = "Images/mist.png";
+    let errorImg = "Images/errorImg.png"
 
     $("#search-button").click(function () {
 
         // Fetch input value for weather query
 
-        var searchedLocation = $("input[name=search-field]").val();
+        let searchedLocation = $("input[name=search-field]").val();
 
         $.ajax({
             type: "GET",
@@ -57,17 +56,56 @@ $(document).ready(function () {
                     image = errorImg;
                 }
 
-                // add data to DOM
+                // Create only up to 6 weather card divs. 
 
-                document.getElementById("outer-card-wrapper").innerHTML +=
-                    `<div class="inner-card-wrap">
+                let currentCards = $(".inner-card-wrapper");
+                console.log(currentCards.length);
+
+                if (currentCards.length) {
+                    if (currentCards.length > 5) {
+                        currentCards[0].remove();
+                        document.getElementById("outer-card-wrapper").innerHTML +=
+                            `<div class="inner-card-wrapper">
                     <p class="country-name">${data.name} in ${data.sys.country}</p>
                     <img src="${image}">
-                    <p>${data.weather[0].description}</p>
-                    <p>${Math.floor(data.main.temp)} °C</p>
-                    <p>feels like... ${data.main.feels_like}</p>
+                    <p class="weather-temp">${Math.floor(data.main.temp)} °C</p>
+                    <p class="but-feels">but feels like... ${data.main.feels_like} °C</p>
+                    <p class="weather-description">${data.weather[0].description}</p>
+                    
                     </div>
                     `;
+                    } else {
+                        document.getElementById("outer-card-wrapper").innerHTML +=
+                            `<div class="inner-card-wrapper">
+                    <p class="country-name">${data.name} in ${data.sys.country}</p>
+                    <img src="${image}">
+                    <p class="weather-temp">${Math.floor(data.main.temp)} °C</p>
+                    <p class="but-feels">but feels like... ${data.main.feels_like} °C</p>
+                    <p class="weather-description">${data.weather[0].description}</p>
+                    
+                    </div>
+                    `;
+
+                    }
+
+                } else {
+                    document.getElementById("outer-card-wrapper").innerHTML +=
+                        `<div class="inner-card-wrapper">
+                    <p class="country-name">${data.name} in ${data.sys.country}</p>
+                    <img src="${image}">
+                    <p class="weather-temp">${Math.floor(data.main.temp)} °C</p>
+                    <p class="but-feels">but feels like... ${data.main.feels_like} °C</p>
+                    <p class="weather-description">${data.weather[0].description}</p>
+                    
+                    </div>
+                    `;
+
+                }
+
+
+
+
+
 
             },
             error: function (error) {
