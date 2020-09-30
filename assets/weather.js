@@ -30,65 +30,71 @@ $(document).ready(function () {
 
                 // Check which Weather IMG has been received + create new variable with custom IMG
 
-                if (data.weather[0].icon == "01d") {
-                    image = clearDay;
-                } else if (data.weather[0].icon == "01n") {
-                    image = clearNight;
-                } else if (data.weather[0].icon == "02d") {
-                    image = sunClouds;
-                } else if (data.weather[0].icon == "02n") {
-                    image = moonClouds;
-                } else if (data.weather[0].icon == "03d" || data.weather[0].icon == "03n") {
-                    image = scatteredClouds;
-                } else if (data.weather[0].icon == "04d" || data.weather[0].icon == "04n") {
-                    image = brokenClouds;
-                } else if (data.weather[0].icon == "09d" || data.weather[0].icon == "09n") {
-                    image = showerRain;
-                } else if (data.weather[0].icon == "10d" || data.weather[0].icon == "10n") {
-                    image = rain;
-                } else if (data.weather[0].icon == "11d" || data.weather[0].icon == "11n") {
-                    image = thunder;
-                } else if (data.weather[0].icon == "13d" || data.weather[0].icon == "13n") {
-                    image = snow;
-                } else if (data.weather[0].icon == "50d" || data.weather[0].icon == "50n") {
-                    image = mist;
-                } else {
-                    image = errorImg;
+                let image = data.weather[0].icon;
+
+                switch (image) {
+                    case "01d":
+                        image = clearDay;
+                        break;
+                    case "01n":
+                        image = clearNight;
+                        break;
+                    case "02d":
+                        image = sunClouds;
+                        break;
+                    case "02n":
+                        image = moonClouds;
+                        break;
+                    case "03d":
+                        image = scatteredClouds;
+                        break;
+                    case "03n":
+                        image = scatteredClouds;
+                        break;
+                    case "04n":
+                        image = brokenClouds;
+                        break;
+                    case "04d":
+                        image = brokenClouds;
+                        break;
+                    case "09d":
+                        image = showerRain;
+                        break;
+                    case "09n":
+                        image = showerRain;
+                        break;
+                    case "10d":
+                        image = rain;
+                        break;
+                    case "10n":
+                        image = rain;
+                        break;
+                    case "11d":
+                        image = thunder;
+                        break;
+                    case "11n":
+                        image = thunder;
+                        break;
+                    case "13d":
+                        image = snow;
+                        break;
+                    case "13n":
+                        image = snow;
+                        break;
+                    case "50n":
+                        image = mist;
+                        break;
+                    case "50d":
+                        image = mist;
+                        break;
+                    default: 
+                        image = errorImg;
+                        break;
                 }
 
-                // Create only up to 6 weather card divs. 
+                // Create a new weather card div
 
-                let currentCards = $(".inner-card-wrapper");
-                console.log(currentCards.length);
-
-                if (currentCards.length) {
-                    if (currentCards.length > 5) {
-                        currentCards[0].remove();
-                        document.getElementById("outer-card-wrapper").innerHTML +=
-                            `<div class="inner-card-wrapper">
-                    <p class="country-name">${data.name} in ${data.sys.country}</p>
-                    <img src="${image}">
-                    <p class="weather-temp">${Math.floor(data.main.temp)} °C</p>
-                    <p class="but-feels">but feels like... ${data.main.feels_like} °C</p>
-                    <p class="weather-description">${data.weather[0].description}</p>
-                    
-                    </div>
-                    `;
-                    } else {
-                        document.getElementById("outer-card-wrapper").innerHTML +=
-                            `<div class="inner-card-wrapper">
-                    <p class="country-name">${data.name} in ${data.sys.country}</p>
-                    <img src="${image}">
-                    <p class="weather-temp">${Math.floor(data.main.temp)} °C</p>
-                    <p class="but-feels">but feels like... ${data.main.feels_like} °C</p>
-                    <p class="weather-description">${data.weather[0].description}</p>
-                    
-                    </div>
-                    `;
-
-                    }
-
-                } else {
+                function createCard() {
                     document.getElementById("outer-card-wrapper").innerHTML +=
                         `<div class="inner-card-wrapper">
                     <p class="country-name">${data.name} in ${data.sys.country}</p>
@@ -96,16 +102,24 @@ $(document).ready(function () {
                     <p class="weather-temp">${Math.floor(data.main.temp)} °C</p>
                     <p class="but-feels">but feels like... ${data.main.feels_like} °C</p>
                     <p class="weather-description">${data.weather[0].description}</p>
-                    
                     </div>
-                    `;
+                    `}
 
+                let currentCards = $(".inner-card-wrapper");
+                console.log(currentCards.length);
+
+                // Create only up to 6 weather card divs at any one time. 
+
+                if (currentCards.length) {
+                    if (currentCards.length > 5) {
+                        currentCards[0].remove();
+                        createCard();
+                    } else {
+                        createCard();
+                    }
+                } else {
+                    createCard();
                 }
-
-
-
-
-
 
             },
             error: function (error) {
@@ -114,10 +128,5 @@ $(document).ready(function () {
                 alert(`Woops, something went wrong... ${errorMsg}`);
             }
         });
-
-
-
-
     });
-
 });
