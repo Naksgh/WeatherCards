@@ -1,34 +1,91 @@
-.weather-img {
-    max-width: 250px;
+/* FONTS */ 
+
+@import url('https://fonts.googleapis.com/css2?family=Bangers&family=DM+Sans:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sansita+Swashed:wght@300&display=swap');
+
+
+/* HOME PAGE */ 
+
+#mid-logo {
+    width: 25%;
+    font-family: 'Bangers', cursive;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    letter-spacing: 3px;
+    font-size: 3rem;
+    text-align: center;
+    border: 0.5px solid white;
+    top: 88%;
+    left: 50%;
+}
+
+.custom-weather-icon {
+    position: relative;
+    left: 30px;
+    color: #70bbd8;
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+    color: #fff;
+    background: linear-gradient(60deg, #47b5da, #716868, #8b9fab);
+    animation: magic 15s ease-in-out infinite;
+    position: relative;
+    background-size: 400% 400%;
+}
+
+#search-field {
+    width: 25%;
+}
+
+#welcome {
+    font-family: 'Sansita Swashed', cursive;
+    text-align: center;
+    padding-top: 25px;
+}
+
+
+.search-bar {
+    position: relative;
+    top: 25px;
+    text-align: center;
+}
+
+/* WEATHER CARDS */
+
+img {
+    max-width: 60%;
 }
 
 #outer-card-wrapper {
     margin: 25px;
+    padding: 15px;
 }
 
 .inner-card-wrapper {
+    background-color: #3e3352;
     border-radius: 36px;
-    max-width: 279px;
-    max-height: 450px;
     text-align: center;
-    float: left;
-    margin: 10px;
     background-image: linear-gradient(45deg, #4f95ff , transparent);
     -webkit-box-shadow: 10px 10px 3px 2px rgba(0,0,0,0.77);
--moz-box-shadow: 10px 10px 3px 2px rgba(0,0,0,0.77);
-box-shadow: 10px 10px 3px 2px rgba(0,0,0,0.77);
-
+    -moz-box-shadow: 10px 10px 3px 2px rgba(0,0,0,0.77);
+    box-shadow: 10px 10px 3px 2px rgba(0,0,0,0.77);
+    min-width: 200px;
+    max-width: 272px;
+    min-height: 280px;
+    max-height: 400px;
 }
 
 .country-name {
     margin-bottom: 5px;
     font-family: fantasy;
-    font-size: 30px;
+    font-size: 23px;
 
 }
 
 .weather-temp {
-    font-size: 29px;
+    font-size: 37px;
     margin-top: 0px;
     margin-bottom: 0px;
 }
@@ -40,6 +97,22 @@ box-shadow: 10px 10px 3px 2px rgba(0,0,0,0.77);
 }
 
 .weather-description {
-    font-size: 36px;
+    font-family: fantasy;
+    font-size: 24px;
+    text-transform: uppercase;
     margin-top: 14px;
+}
+
+/* KEYFRAMES */ 
+
+@keyframes magic {
+    0% {
+        background-position: 0 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0 50%;
+    }
 }

@@ -96,12 +96,14 @@ $(document).ready(function () {
 
                 function createCard() {
                     document.getElementById("outer-card-wrapper").innerHTML +=
-                        `<div class="inner-card-wrapper">
+                    `<div class = "col-sm-4">
+                    <div class="inner-card-wrapper">
                     <p class="country-name">${data.name} in ${data.sys.country}</p>
                     <img src="${image}">
                     <p class="weather-temp">${Math.floor(data.main.temp)} °C</p>
-                    <p class="but-feels">but feels like... ${data.main.feels_like} °C</p>
+                    <p class="but-feels d-sm-none d-md-block">but feels like... ${data.main.feels_like} °C</p>
                     <p class="weather-description">${data.weather[0].description}</p>
+                    </div>
                     </div>
                     `}
 
