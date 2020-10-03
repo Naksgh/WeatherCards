@@ -21,7 +21,7 @@
 		<h1 id="welcome">Real time weather search <i class="custom-weather-icon fas fa-cloud-moon-rain"></i></h1>
 		<div class="search-bar">
 			<input type="text" id="search-field" placeholder="type any location" name="search-field">
-			<button id="search-button">Go!</button>
+			<button id="search-button" class="btn btn-dark">Go!</button>
 		</div>
 	</section>
 
@@ -31,14 +31,14 @@
 
 
 
-	<h2 id="mid-logo"> Weather Cards</h2>
+
 
 	<script type="text/javascript" src="assets/weather.js"></script>
 	<script>
 		function initAutocomplete() {
-     var input = document.getElementById('search-field');
-     var searchBox = new google.maps.places.SearchBox(input); 
-   }
+        var input = document.getElementById('search-field');
+       var searchBox = new google.maps.places.SearchBox(input); 
+        }
 	</script>
 </body>
 
