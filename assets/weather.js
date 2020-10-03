@@ -16,6 +16,19 @@ $(document).ready(function () {
     let mist = "Images/mist.png";
     let errorImg = "Images/errorImg.png"
 
+    // Add ENTER click event for search
+
+    var input = document.getElementById("search-field");
+
+    input.addEventListener("keyup", function (event) {
+        if (event.keyCode === 13) {
+            event.preventDefault();
+            document.getElementById("search-button").click();
+        }
+    });
+
+    // Get Weather Data
+
     $("#search-button").click(function () {
 
         // Fetch input value for weather query
@@ -87,7 +100,7 @@ $(document).ready(function () {
                     case "50d":
                         image = mist;
                         break;
-                    default: 
+                    default:
                         image = errorImg;
                         break;
                 }
@@ -96,25 +109,27 @@ $(document).ready(function () {
 
                 function createCard() {
                     document.getElementById("outer-card-wrapper").innerHTML +=
-                    `<div class = "col-sm-4">
+                        `<div class="col-md-4 col-sm-6 responsive-div">
                     <div class="inner-card-wrapper">
                     <p class="country-name">${data.name} in ${data.sys.country}</p>
                     <img src="${image}">
                     <p class="weather-temp">${Math.floor(data.main.temp)} °C</p>
-                    <p class="but-feels d-sm-none d-md-block">but feels like... ${data.main.feels_like} °C</p>
+                    <p class="but-feels d-sm-block d-none d-sm-block">but feels like... ${data.main.feels_like} °C</p>
                     <p class="weather-description">${data.weather[0].description}</p>
                     </div>
                     </div>
                     `}
 
+
+                let currentDiv = $(".col-sm-6");
                 let currentCards = $(".inner-card-wrapper");
-                console.log(currentCards.length);
+
 
                 // Create only up to 6 weather card divs at any one time. 
 
                 if (currentCards.length) {
                     if (currentCards.length > 5) {
-                        currentCards[0].remove();
+                        currentDiv[0].remove();
                         createCard();
                     } else {
                         createCard();
@@ -123,7 +138,10 @@ $(document).ready(function () {
                     createCard();
                 }
 
-            },
+            }, 
+
+            // Error handling
+        
             error: function (error) {
                 console.log(error);
                 var errorMsg = error.responseJSON.message;

@@ -13,33 +13,32 @@
 	<script async defer
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAvPQkKrsVzQVMez2Dug9QBZCTgHm69S-g&libraries=places&callback=initAutocomplete">
 	</script>
-    <script src="https://kit.fontawesome.com/71efc761c4.js" crossorigin="anonymous"></script>
+	<script src="https://kit.fontawesome.com/71efc761c4.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
-        <section>
-		<h1 id="welcome">Real time weather search <i class="custom-weather-icon fas fa-cloud-moon-rain"></i></h1> 
+	<section>
+		<h1 id="welcome">Real time weather search <i class="custom-weather-icon fas fa-cloud-moon-rain"></i></h1>
 		<div class="search-bar">
-			<input type="text" id="search-field" placeholder="type your location here" name="search-field">
+			<input type="text" id="search-field" placeholder="type any location" name="search-field">
 			<button id="search-button">Go!</button>
 		</div>
-        </section>
+	</section>
 
-		<div class="container-fluid">
-			<div class="row" id="outer-card-wrapper"></div>
+	<div class="container-fluid">
+		<div class="row" id="outer-card-wrapper"></div>
+	</div>
 
 
 
-		</div>
-
-        <h2 id="mid-logo"> Weather Cards</h2>
+	<h2 id="mid-logo"> Weather Cards</h2>
 
 	<script type="text/javascript" src="assets/weather.js"></script>
 	<script>
 		function initAutocomplete() {
-        var input = document.getElementById('search-field');
-        var searchBox = new google.maps.places.SearchBox(input); 
-        }
+     var input = document.getElementById('search-field');
+     var searchBox = new google.maps.places.SearchBox(input); 
+   }
 	</script>
 </body>
 
