@@ -37,7 +37,10 @@
 	<script>
 		function initAutocomplete() {
         var input = document.getElementById('search-field');
-       var searchBox = new google.maps.places.SearchBox(input); 
+        var options = {
+            types: ['(cities)']
+        };
+       var searchBox = new google.maps.places.Autocomplete(input, options); 
         }
 	</script>
 </body>
