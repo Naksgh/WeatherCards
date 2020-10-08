@@ -5,6 +5,11 @@
 
 /* HOME PAGE */ 
 
+#remove-button {
+    position: absolute;
+    top: 0;
+}
+
 #search-button {
     background-color: #295886;
     position: relative;
