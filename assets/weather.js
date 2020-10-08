@@ -27,6 +27,12 @@ $(document).ready(function () {
         }
     });
 
+    // Remove all existing Data cards
+
+    $("#remove-button").click(function() {
+        $(".responsive-div").remove();
+    })
+
     // Get Weather Data
 
     $("#search-button").click(function () {
